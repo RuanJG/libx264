@@ -152,6 +152,10 @@ SRCS += common/mips/mc-c.c common/mips/dct-c.c \
 endif
 endif
 
+################ ruan add my liba
+SRCS += h264encoder.c
+#### end
+
 ifneq ($(HAVE_GETOPT_LONG),1)
 SRCCLI += extras/getopt.c
 endif
@@ -183,11 +187,12 @@ lib-shared: $(SONAME)
 
 $(LIBX264): $(GENERATED) .depend $(OBJS) $(OBJASM)
 	rm -f $(LIBX264)
-	$(AR)$@ $(OBJS) $(OBJASM)
+	#$(AR) $@ $(OBJS) $(OBJASM)
+	$(AR) -rvs $@ $(OBJS)
 	$(if $(RANLIB), $(RANLIB) $@)
 
 $(SONAME): $(GENERATED) .depend $(OBJS) $(OBJASM) $(OBJSO)
-	$(LD)$@ $(OBJS) $(OBJASM) $(OBJSO) $(SOFLAGS) $(LDFLAGS)
+	$(LD) $@ $(OBJS) $(OBJASM) $(OBJSO) $(SOFLAGS) $(LDFLAGS)
 
 ifneq ($(EXE),)
 .PHONY: x264 checkasm example
@@ -197,13 +202,13 @@ example: example$(EXE)
 endif
 
 x264$(EXE): $(GENERATED) .depend $(OBJCLI) $(CLI_LIBX264)
-	$(LD)$@ $(OBJCLI) $(CLI_LIBX264) $(LDFLAGSCLI) $(LDFLAGS)
+	$(LD) $@ $(OBJCLI) $(CLI_LIBX264) $(LDFLAGSCLI) $(LDFLAGS)
 
 checkasm$(EXE): $(GENERATED) .depend $(OBJCHK) $(LIBX264)
-	$(LD)$@ $(OBJCHK) $(LIBX264) $(LDFLAGS)
+	$(LD) $@ $(OBJCHK) $(LIBX264) $(LDFLAGS)
 
 example$(EXE): $(GENERATED) .depend $(OBJEXAMPLE) $(LIBX264)
-	$(LD)$@ $(OBJEXAMPLE) $(LIBX264) $(LDFLAGS)
+	$(LD) $@ $(OBJEXAMPLE) $(LIBX264) $(LDFLAGS)
 
 $(OBJS) $(OBJASM) $(OBJSO) $(OBJCLI) $(OBJCHK) $(OBJEXAMPLE): .depend
 
