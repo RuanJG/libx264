@@ -97,8 +97,8 @@ int h264_compress_frame(int type, char *in, int in_len, char *out) {
 
 	int yuv422_length = 2 * en->param->i_width * en->param->i_height;
 
-	if( yuv422_length > in_len ){
-		log_msg("%s: the in buffer len is little than yuv422_length \n");
+	if( yuv422_length != in_len ){
+		log_msg("h264_compress_frame: the buffer len !=   yuv422_length \n");
 		return -1;
 	}
 

@@ -1,5 +1,5 @@
 SRCPATH=.
-prefix=mips
+prefix=..
 exec_prefix=${prefix}
 bindir=${exec_prefix}/bin
 libdir=${exec_prefix}/lib
@@ -31,7 +31,7 @@ PROF_GEN_LD=-fprofile-generate
 PROF_USE_CC=-fprofile-use
 PROF_USE_LD=-fprofile-use
 HAVE_OPENCL=yes
-default: lib-static
+default: cli
 install: install-lib-static
 LDFLAGSCLI = -ldl 
 CLI_LIBX264 = $(LIBX264)
