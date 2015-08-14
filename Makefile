@@ -187,8 +187,8 @@ lib-shared: $(SONAME)
 
 $(LIBX264): $(GENERATED) .depend $(OBJS) $(OBJASM)
 	rm -f $(LIBX264)
-	#$(AR) $@ $(OBJS) $(OBJASM)
-	$(AR) -rvs $@ $(OBJS)
+	$(AR) $@ $(OBJS) $(OBJASM)
+	#$(AR) -rvs $@ $(OBJS)
 	$(if $(RANLIB), $(RANLIB) $@)
 
 $(SONAME): $(GENERATED) .depend $(OBJS) $(OBJASM) $(OBJSO)

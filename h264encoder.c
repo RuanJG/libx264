@@ -91,7 +91,6 @@ int h264_compress_frame(int type, char *in, int in_len, char *out) {
 	char *y = (char *)en->picture->img.plane[0];
 	char *u = (char *)en->picture->img.plane[1];
 	char *v = (char *)en->picture->img.plane[2];
-
 	int is_y = 1, is_u = 1;
 	int y_index = 0, u_index = 0, v_index = 0;
 
